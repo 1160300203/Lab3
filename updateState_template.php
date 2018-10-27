@@ -1,5 +1,5 @@
 <?php
-    $conn=mysqli_connect('localhost', 'debian-sys-maint', 'u0kdbTu0JPf01068', 'laixin') or die ('Error! '.mysqli_connect_error($conn));
+    $conn=mysqli_connect('sophia.cs.hku.hk', 'xlai', '255511', 'xlai') or die ('Error! '.mysqli_connect_error($conn));
 
     // Implement the code here.
     $id = $_GET['id'];
