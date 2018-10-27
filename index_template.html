@@ -88,7 +88,6 @@
         var oldValue = elem.innerHTML;
         var newvalue;
         var itemID = elem.parentNode.getAttribute('id');
-
         if (oldValue == 'PRESENT') {
             newvalue = 'ABSENT';
         } else {
@@ -103,12 +102,14 @@
 		}
 		xmlhttp.onreadystatechange = function(){
           	if(xmlhttp.readyState == 4 && xmlhttp.status == 200){
-          	    elem.innerHTML = newvalue;
+          	    elem.innerHTML = xmlhttp.responseText;
 			}
 		};
-        xmlhttp.open("GET", "updateState_template.php", true);
+
+        xmlhttp.open("GET", "updateState_template.php?id="+itemID+"&newattendance="+newvalue, true);
         xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        xmlhttp.send("id="+itemID+"&newattendance="+value);
+        xmlhttp.send();
+
     }
 
     // Task 2.1
@@ -176,7 +177,7 @@
         document.getElementById("button_all").style.display = "block";
     }
 
-    document.getElementsByTagName("body")[0].addEventListener("load", showAll);
+    document.getElementsByTagName("h1")[0].parentNode.addEventListener("load", showAll);
 
     document.getElementById("button_all").addEventListener("click", showAll);
 

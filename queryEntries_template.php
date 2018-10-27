@@ -1,6 +1,6 @@
 <?php
 
-	$conn=mysqli_connect('sophia.cs.hku.hk', 'xlai', '255511', 'xlai') or die ('Error! '.mysqli_connect_error($conn));
+	$conn=mysqli_connect('sophia', 'xlai', '255511', 'xlai') or die ('Error! '.mysqli_connect_error($conn));
 
 	if($_POST['show'] =='add') {
 		// add code here
@@ -24,7 +24,10 @@
         $result = mysqli_query($conn, $query) or die ('Failed to query '.mysqli_error($conn));
         while($row = mysqli_fetch_array($result)) {
             print "<div id=".$row['id'].">";
-            print "<span onclick='changeState(document.getElementById(".$row['id'].").firstChild)'>".$row['attendOrNot']."</span>"."<h3> ".$row['studentname']." (".$row['major'].")"."</h3>";
+            $id = "id";
+            $value = "$row[$id]";
+            $string = "<span onclick =\"changeState(document.getElementById('$value').firstChild)\">";
+            print $string.$row['attendOrNot']."</span>"."<h3> ".$row['studentname']." (".$row['major'].")"."</h3>";
             print "<h5>".$row['course']." on ".$row['coursedate']."</h5>";
             print "</div>";
         }
